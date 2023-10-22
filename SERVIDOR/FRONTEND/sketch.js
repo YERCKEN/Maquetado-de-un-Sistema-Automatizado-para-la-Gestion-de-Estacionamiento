@@ -16,6 +16,11 @@ let S = 1;
 let canvasX = 0; // Posición X actual del canvas
 let canvasY = 0; // Posición Y actual del canvas
 
+
+// % DE ALTURA DEL CANVAS
+let porcentajeDeAltura = 0.80;
+
+
 //PRELOAD __________________________________________________________________________-
 
 function preload() {
@@ -25,7 +30,12 @@ function preload() {
 //SETUP __________________________________________________________________________-
 
 function setup() {
-  createCanvas(1080, 1920);
+
+  // Cambiar el alto del canvas según el porcentaje
+  let canvas = createCanvas(windowWidth, windowHeight * porcentajeDeAltura);
+
+
+  //canvas.parent('canvas-container'); // Agrega el canvas a un contenedor HTML
 }
 
 function draw() {
@@ -42,6 +52,10 @@ function draw() {
   // Imagen
   image(imgFondo, 0, 0);
 
+  // Dibujar rectángulos ===============================================
+  dibujarRectangulo(683, 222, 44, 91);
+  dibujarRectangulo(728, 222, 44, 91);
+
   // FIN DE TRANSFORMACIONES ===============================================================
   pop();
   
@@ -53,8 +67,44 @@ function draw() {
   text("X: " + mouseX, mouseX - 50, mouseY);
   fill("blue");
   text("Y: " + mouseY, mouseX - 50, mouseY + 20);
+
+  agregarMargenes();
 }
 
+// FUCNIÓN PAR ADIBUJAR RECTÁNGULOO
+function dibujarRectangulo(x, y, ancho, alto) {
+  //push(); // Guardamos la configuración actual de transformación
+  
+  // Dibujar un rectángulo azul en la posición (x, y) con el ancho y alto especificados
+  fill("#C4FFEB");
+  rect(x, y, ancho, alto);
+  
+  //pop(); // Restauramos la configuración de transformación anterior
+}
+
+
+// FUNCUÓN PARA MÁRGENES Y TAMAÑO DE PANTALLA ===============================================
+function agregarMargenes() {
+  let porcentajeGrosor = 0.02;
+  let grosorMargen = windowWidth * porcentajeGrosor;
+  let alturaDeMargen = windowHeight * porcentajeDeAltura;
+
+  noStroke();
+  fill('white');
+
+  // Izquierda
+  rect(0, 0, grosorMargen, alturaDeMargen);
+  // Derecha
+  rect(windowWidth - grosorMargen, 0, grosorMargen, alturaDeMargen);
+}
+
+function windowResized() {
+  // Cambiar el tamaño del canvas cuando se redimensiona la ventana
+  resizeCanvas(windowWidth, windowHeight * porcentajeDeAltura);
+
+  // Volver a agregar los márgenes
+  agregarMargenes();
+}
 
 //FUNCIONES DE TRANSFORMACIOES ===============================================================================
 
