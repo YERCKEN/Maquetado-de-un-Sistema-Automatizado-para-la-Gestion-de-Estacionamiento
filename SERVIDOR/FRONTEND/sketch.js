@@ -179,10 +179,10 @@ function mouseWheel(event) {
 
     if (event.delta > 0) {
       // Hacer zoom in centrado en la posición del mouse
-      zoomIn(canvasX, canvasY);
+      zoomOut(canvasX, canvasY);
     } else {
       // Hacer zoom out centrado en la posición del mouse
-      zoomOut(canvasX, canvasY);
+      zoomIn(canvasX, canvasY);
     }
   }
   return false; // Evitar que la página haga scroll
