@@ -26,7 +26,8 @@ let parkingData;
 //PRELOAD __________________________________________________________________________-
 
 function preload() {
-  imgFondo = loadImage('https://cdn.glitch.global/20e097f8-2be8-4fa4-8f12-20d3d33c120d/FONDO.jpg?v=1697933427787');
+  //imgFondo = loadImage('https://cdn.glitch.global/20e097f8-2be8-4fa4-8f12-20d3d33c120d/FONDO.jpg?v=1697933427787');
+  imgFondo = loadImage('https://cdn.glitch.global/20e097f8-2be8-4fa4-8f12-20d3d33c120d/FONDO_GRIS_SIN_CESPED.jpg?v=1698018267809');
 }
 
 //SETUP __________________________________________________________________________-
@@ -41,7 +42,7 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  background("#D0D7DA");
   
   // APLICAR TRANSFORMACIONES ===============================================
   push();
@@ -56,33 +57,7 @@ function draw() {
   if (parkingData) {
     dibujarEstacionamientoC();
   }
-/*
-  // Dibujar rectángulos ===============================================
-  //Estacionamiento C
-  dibujarRectangulo(683, 222, 44, 91);
-  dibujarRectangulo(728, 222, 44, 91);
-  dibujarRectangulo(774, 222, 44, 91);
-  dibujarRectangulo(819, 222, 44, 91);
-  dibujarRectangulo(864, 222, 43, 91);
-  dibujarRectangulo(909, 222, 43, 91);
-  dibujarRectangulo(683, 320, 43, 91);
-  dibujarRectangulo(728, 320, 43, 91);
-  dibujarRectangulo(774, 320, 43, 91);
-  dibujarRectangulo(819, 320, 43, 91);
-  dibujarRectangulo(864, 320, 43, 91);
-  dibujarRectangulo(909, 320, 43, 91);
-  //Estacionamiento A
-  dibujarRectangulo(77, 1135, 86, 51);
-  dibujarRectangulo(77, 1190, 86, 51);
-  dibujarRectangulo(77, 1245, 86, 51);
-  dibujarRectangulo(77, 1298, 86, 51);
-  dibujarRectangulo(77, 1351, 86, 51);
-  dibujarRectangulo(77, 1405, 86, 53);
-  //Estacionamiento B
-  dibujarRectangulo(601, 931, 42, 87);
-  dibujarRectangulo(647, 931, 43, 87);
-  dibujarRectangulo(693, 931, 42, 87);
-  dibujarRectangulo(739, 931, 42, 87);*/
+
   // FIN DE TRANSFORMACIONES ===============================================================
   pop();
 
@@ -96,6 +71,7 @@ function draw() {
 
   agregarMargenes();
 }
+
 function fetchParkingData() {
   fetch('https://phppasarvariable.000webhostapp.com/database_access.php')
     .then(response => response.json())
@@ -107,6 +83,7 @@ function fetchParkingData() {
         console.error('Error:', error);
     });
 }
+
 function dibujarEstacionamientoC() {
   let positions = [
     {x: 683, y: 222}, {x: 728, y: 222}, {x: 774, y: 222}, {x: 819, y: 222}, {x: 864, y: 222}, {x: 909, y: 222},
@@ -124,9 +101,16 @@ function dibujarEstacionamientoC() {
 // FUCNIÓN PAR ADIBUJAR RECTÁNGULOO
 function dibujarRectangulo(x, y, ancho, alto, value) {
   if (value === '0') {
-    fill("#7053FF");
-  } else if (value === '1') {
+    //fill("#866EFF");
     fill("#C4FFEB");
+    fill("#FFFFFF");
+    //OCUPADO
+  } else if (value === '1') {
+    
+    //MORADO
+    //fill("#866EFF");
+  
+    fill("#FF4D4D");
     
   }
   rect(x, y, ancho, alto);
