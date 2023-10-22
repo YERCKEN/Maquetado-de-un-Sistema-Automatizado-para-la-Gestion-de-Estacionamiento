@@ -124,9 +124,10 @@ function dibujarEstacionamientoC() {
 // FUCNIÓN PAR ADIBUJAR RECTÁNGULOO
 function dibujarRectangulo(x, y, ancho, alto, value) {
   if (value === '0') {
-    fill("#FF0000");
+    fill("#7053FF");
   } else if (value === '1') {
     fill("#C4FFEB");
+    
   }
   rect(x, y, ancho, alto);
 }
