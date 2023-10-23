@@ -102,16 +102,14 @@ function dibujarEstacionamientoC() {
 function dibujarRectangulo(x, y, ancho, alto, value) {
   if (value === '0') {
     //fill("#866EFF");
-    fill("#C4FFEB");
+    //fill("#C4FFEB");
     fill("#FFFFFF");
     //OCUPADO
   } else if (value === '1') {
-    
     //MORADO
     //fill("#866EFF");
-  
+    //ROJO de ocupado
     fill("#FF4D4D");
-    
   }
   rect(x, y, ancho, alto);
 }
