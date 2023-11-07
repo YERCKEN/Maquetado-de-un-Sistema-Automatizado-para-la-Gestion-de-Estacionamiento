@@ -18,12 +18,11 @@ let canvasY = 0; // Posición Y actual del canvas
 
 
 // % DE ALTURA DEL CANVAS
-let porcentajeDeAltura = 0.40;
+let porcentajeDeAltura = 0.80;
+let porcentajeDeAnchura= 0.95;
 
 //DATOS DE ESTACIONAMIENTO
 let parkingData;
-
-
 
 
 //PRELOAD __________________________________________________________________________-
@@ -37,12 +36,10 @@ function preload() {
 
 function setup() {
   // Obtener el contenedor del canvas y sus dimensiones
-  let canvasContainer = select('#canvas-container');
-  let canvasWidth = canvasContainer.width;
-  let canvasHeight = canvasContainer.height;
+
 
   // Crear el canvas con las dimensiones del contenedor
-  let canvas = createCanvas(windowWidth *0.95, 600);
+  let canvas = createCanvas(windowWidth * porcentajeDeAnchura, windowWidth * porcentajeDeAltura);
 
   fetchParkingData();
   setInterval(fetchParkingData, 1000);  // Llama a fetchParkingData cada 1000ms (es decir, cada segundo)
@@ -72,18 +69,19 @@ function draw() {
   pop();
 
   // Información de posición del mouse
+  /*
   textSize(24);
   fill("red");
   strokeWeight(1);
   text("X: " + mouseX, mouseX - 50, mouseY);
   fill("blue");
   text("Y: " + mouseY, mouseX - 50, mouseY + 20);
-
+  */
   //agregarMargenes();
 }
 
 function fetchParkingData() {
-  fetch('https://phppasarvariable.000webhostapp.com/database_access.php')
+  fetch('https://phppasarvariable.000webhostapp.com/BACKEND/database_access.php')
     .then(response => response.json())
     .then(data => {
         parkingData = data;
