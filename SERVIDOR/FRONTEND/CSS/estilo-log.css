@@ -1,0 +1,148 @@
+.overlay {
+    font-family: Arial, sans-serif;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    color: #f2f2f2;
+}
+
+
+
+.form-container {
+    background-color: #231843;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-button {
+    align-self: flex-end;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    border: 2px solid rgb(71, 71, 250);
+    border-radius: 50%;
+    font-size: 25px;
+    padding: 0 8px 0 8px;
+}
+
+.close-button:hover {
+    font-size: 27px;
+    color: rgb(235, 106, 106) ;
+}
+
+.iniciaSesion {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+
+.user input, .pass input{
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 200px;
+    height: 30px;
+    caret-color: lightgreen;
+}
+
+.user input{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    color: #1a0f0f;
+    caret-color: rgb(181, 10, 21);
+}
+
+.pass input{
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    color: #1a0f0f;
+    caret-color: rgb(62, 25, 227);
+}
+
+.pass input:focus{
+    outline: 2px solid rgb(62, 25, 227);
+}
+
+.user input:focus{
+    outline: 2px solid rgb(181, 10, 21); 
+}
+
+.titulo1{
+    padding-top: 25px;
+    padding-bottom: 20px;
+}
+
+.titulo2{
+    padding-bottom: 20px;
+}
+
+.user{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.pass{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.iniciaSesion{
+    background: rgb(39, 193, 134);
+    color: #d7f3f0;
+    width: 200px;
+    height: 30px;
+    border: 1px solid rgb(60, 246, 193);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iniciaSesion:hover{
+    background: rgb(20, 171, 113);
+    color: #d7f3f0;
+}
+
+.error{
+    display: flex;
+    margin-top: 10px;
+    width: 150px;
+    height: 25px;
+    align-items: center;
+    justify-content: center;
+    background: rgb(181, 72, 72);
+    color: #f2f2f2;
+    text-align: center;
+}
+
+.msgError{
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textoPass{
+    padding: 0 0 10px 0;
+}
+
+.textoUser{
+    padding: 0 0 10px 0;
+}
+
+.titulo1 b{
+    color: blue;
+}
+

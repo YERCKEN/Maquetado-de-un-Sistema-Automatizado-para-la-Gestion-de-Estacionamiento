@@ -1,25 +1,544 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0 , minimun-scale=1.0">
 
-    <title>Sketch</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <title>Uparking</title>
+
+    <!--CSS--------------------------------------------------------->
+    <link rel="stylesheet" href="CSS/estilo.css">
+    <link rel="stylesheet" href="CSS/estilo-log.css">
+    <link rel="stylesheet" href="CSS/footer-style.css">
+    <link rel="stylesheet" href="CSS/lock-style.css">
+    <link rel="stylesheet" href="CSS/card-style.css">
     <link rel="stylesheet" type="text/css" href="CSS/style.css">
 
+    
+    <!--ICONO--------------------------------------------------------->
+    <link rel="icon" href="CSS/parking.ico">
+    <script src="https://kit.fontawesome.com/527022441c.js" crossorigin="anonymous"></script>
+
+    <!--JS--------------------------------------------------------->
+    <script src="JS/fu.js"></script>
+    <script src="JS/valide.js"></script>
+    <script src="JS/valida.js"></script>
+    <script src="JS/abreCierra.js"></script>
     <script src="libraries/p5.min.js"></script>
 
   </head>
 
-  <body>
+<body>
 
-    <!--CANVAS-->
-    <!-- Div para centrar el canvas -->
-    <div class="canvas-container">
-      <script src="JS/sketch.js"></script>
+
+<!-- header de la página con todas las opciones -->
+
+  <header>
+
+    <div class="logo"><b>U</b>parking</div>
+
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
     </div>
 
+    <nav class="nav-bar">
 
-  </body>
+      <ul>
+
+        <!--Home boton-->
+        <li>
+          
+          <a href="#" class="active">
+            <i class="fa-solid fa-house"></i>
+            Inicio
+          </a>
+        </li>
+        <!-- -->
+
+        <!--Control boton: inicialmente oculto-->
+        <li>
+          <a href="" class="controlUnlock" style="display: none;">
+            <i class="fa-solid fa-unlock"></i>
+            Control
+          </a>
+        </li>
+        <!-- -->
+
+
+        <!--Siempre se muestra -->
+        <li>
+          <a href="" class="sobreNosotros">
+            <i class="fa-regular fa-address-card"></i>
+            Sobre nosotros
+          </a>
+        </li>
+        <!-- -->
+
+        <!--Acceso boton: inicialmente se muestra. Si se inicia sesión, desaparece -->
+        <li>
+          <div class="contenedorAcceso">
+          <button href="javascript:void(0);" id="accesar">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            Acceso
+          </button>
+        </div>
+        </li>
+        <!-- -->
+
+        <!--Cerrar sesion boton: al iniciar correctamente sesión, aparece -->
+        <li>
+          <a href="" class="cerrarSesion" style="display: none;" onclick="cerrarSesion()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Cerrar Sesión
+          </a>
+        </li>
+      
+        <!-- -->
+
+      </ul>
+
+    </nav>
+    
+
+  </header>
+
+  <!--Acaba header-->
+
+
+
+
+<!--Notificacion que se muestra cuando se inicia sesión-->
+
+<div class="wrapper">
+  <div id="toast" class="notification">
+      <div class="container-1">
+          <i class="fas fa-check-square"></i>
+      </div>
+      <div class="container-2">
+          <p class="tit">Inicio exitoso</p>
+          <p class="message">Ahora tienes acceso a los controles.</p>
+      </div>
+  </div>
+</div>
+
+<!-- -->
+
+
+
+
+  <!--Control de puerta cuando se accede con user y pass-->
+
+  <div class="overlayControls">
+
+    <div class="container-controls">
+
+        <span id="closeControl" class="close-butto">X</span>
+
+        <div class="title">
+            <h1>Parking Control</h1>
+        </div>
+    
+        <div class="controles-div">
+    
+            <div class="semaforo">
+    
+                <div class="traffic-light closed" id="trafficLight">
+                    <div class="light"></div>
+                </div>
+            </div>
+    
+            <div class="fechaHora">
+    
+              <div class="hora">
+                  <div id="reloj"></div>
+              </div>
+    
+              <div class="Fecha">
+                  <div id="fecha"></div>
+              </div>
+    
+            </div>
+    
+        </div>
+        
+        <div class="botonCI">
+            <form method="post" id="formOpenClose">
+                <button type="submit" id="toggleButton">Abrir</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+  
+  setInterval(actualizarReloj, 1000);
+  actualizarReloj();
+  dameFecha();
+
+  
+
+  const unlocker = document.querySelector(".controlUnlock");
+  const overlayControls= document.querySelector(".overlayControls");
+  const closeControl = document.querySelector(".close-butto");
+
+  unlocker.addEventListener("click", () =>{
+    event.preventDefault();
+    prevenirSobreNosotros();
+    overlayControls.style.display = "flex";
+  });
+
+  closeControl.addEventListener("click", () =>{
+  overlayControls.style.display = "none";
+  });
+      
+</script>
+
+<!--Termina control de puerta-->
+
+
+
+
+
+
+
+  <!--Formulario de acceso para privilegios-->
+
+ 
+  <div id="overlay" class="overlay">
+    <div id="formContainer" class="form-container">
+        <span id="closeButton" class="close-button">x</span>
+        <h2 class="titulo1">Bienvenido a <b>U</b>parking</h2>
+        <h3 class="titulo2">Inicia sesión para obtener privilegios</h3>
+
+        <form id="formulario" method="post">
+            <div class="user">
+                <p class="textoUser">usuario</p>
+                <input type="text" id="username" name="nombreUsuario" required>
+            </div>
+
+            <div class="pass">
+                <p class="textoPass">contraseña</p>
+                <input type="password" id="password" name="accesoClave" required>
+            </div>
+
+            <div class="msgError" id="errorMsg" style="display: none;">
+              <span class="error">Error de acceso</span>
+            </div>
+
+            <br>
+
+            <button type="submit" class="iniciaSesion">Iniciar Sesión</button>
+        </form>
+
+    </div>
+  </div>
+
+  <!--Termina formulario-->
+
+
+
+  <!--cartas-->
+
+  <div class="overlayCards">
+
+    <div class="carousel-container">
+
+        <span class="cerrarCards">x</span>
+
+        <div class="slider">
+
+
+            <a href="#slide-1">1</a>
+            <a href="#slide-2">2</a>
+            <a href="#slide-3">3</a>
+
+            <div class="slides">
+
+
+                <div id="slide-1">
+
+                    <img class="flag" src="https://img.icons8.com/color/48/panama.png" alt="panama"/>
+
+
+                    <div class="encabezado-1">
+                        <img src="CSS/perfil1.jpeg" alt="">
+                        <h2 class="name1">JEISSON PAREDES</h2>
+                    </div>
+
+
+                    <div class="datosInt1">
+
+                        <div class="datos1">
+                            <p class="datosP">UTP estudiante</p>
+                            <p class="datosP">Contacto: +507 6303-1775</p>
+                            <p class="datosP">Correo: jeisson.paredes@utp.ac.pa</p>
+                        </div>
+
+                        <div class="status1">
+                            <p class="statusC">Activo</p>
+                            <div class="estado1"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div id="slide-2">
+
+                    <img class="flag" src="https://img.icons8.com/color/48/panama.png" alt="panama"/>
+
+
+                    <div class="encabezado-2">
+                        <img class="perfilF2" src="CSS/perfil2.jpeg" alt="">
+                        <h2 class="name2">EDWAR GONZALEZ</h2>
+                    </div>
+
+
+                    <div class="datosInt2">
+
+                        <div class="datos2">
+                            <p class="datosP">UTP estudiante</p>
+                            <p class="datosP">Contacto: +507 6291-7825</p>
+                            <p class="datosP">Correo: edwar.gonzalez@utp.ac.pa</p>
+                        </div>
+
+                        <div class="status2">
+                            <p class="statusC">Activo</p>
+                            <div class="estado2"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div id="slide-3">
+
+                    <img class="flag" src="https://img.icons8.com/color/48/panama.png" alt="panama"/>
+
+                    <div class="encabezado-3">
+                        <img src="CSS/perfil3.jpg" alt="">
+                        <h2 class="name3">DILAN SOBENIS</h2>
+                    </div>
+
+
+                    <div class="datosInt3">
+
+                        <div class="datos3">
+                            <p class="datosP">UTP estudiante</p>
+                            <p class="datosP">Contacto: +507 6329-1410</p>
+                            <p class="datosP">Correo: dilan.sobenis@utp.ac.pa</p>
+                        </div>
+
+                        <div class="status3">
+                            <p class="statusC">Activo</p>
+                            <div class="estado3"></div>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!---->
+
+
+<script>
+  const abreCards = document.querySelector(".sobreNosotros");
+  const closeCard = document.querySelector(".cerrarCards");
+  const overlayCards= document.querySelector(".overlayCards");
+
+
+  closeCard.addEventListener("click", () =>{
+  overlayCards.style.display = "none";
+});
+
+  abreCards.addEventListener("click", () =>{
+    event.preventDefault();
+    overlayCards.style.display = "flex";
+});
+
+  </script>
+
+
+
+
+  <!-- contenido donde se puede meter el canvas -->
+
+
+  <div style="width: 100%; height: 100%;">
+      <!-- Contenido de relleno para ir haciendo pruebas -->
+    <div id="canvas-container" class="canvasP">
+      <!-- Aquí se insertará el canvas -->
+    </div>
+  </div>
+
+
+<script src="sketch.js"></script>
+
+
+
+<footer class="footer">
+
+  <div class="container-footer">
+      <div class="logo1">
+          <a href="#" class="links">
+              <img src="CSS/footer.png" alt="Logo">TeamX
+          </a>
+      </div>
+      <div class="column">
+          <h3>Redes</h3>
+          <ul class="containerSocials">
+              <li><a class="con1"><img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="whatsapp--v1"/>WhatsApp</a></li>
+              <li><a class="con1"><img src="https://img.icons8.com/color/48/youtube-play.png" alt="youtube-play"/>YouTube</a></li>
+              <li><a class="con1"><img src="https://img.icons8.com/fluency/48/github.png" alt="github"/>GitHub</a></li>
+          </ul>
+      </div>
+      <div class="column">
+          <h3>Contacto</h3>
+          <ul class="socialMedia">
+              <li><a href="#" class="int">jeisson.paredes@utp.ac.pa</a></li>
+              <li><a href="#" class="int">edwar.gonzalez@utp.ac.pa</a></li>
+              <li><a href="#" class="int">dilan.sobenis@utp.ac.pa</a></li>
+          </ul>
+          <img width="30" height="30" src="https://img.icons8.com/fluency/48/mail--v1.png" alt="mail--v1"/>
+          <p style="color: #65ec67;">FISC</p>
+      </div>
+      
+  </div>
+
+  <section class="mas">
+
+    <div class="contenedorGit">
+
+
+      <div class="comentarioC">
+
+        <div class="Git">
+          <input type="email" placeholder="Email address">
+
+          <div class="container-label">
+              <a href=""><strong>Enviar Comentario</strong></a>
+          </div>
+        </div>
+        
+        <textarea placeholder="comenta!" class="comentarioCaja"></textarea>
+
+      </div>
+
+      <div class="irGit">
+        <label class="labelText">Visitar proyecto GitHub</label>
+        <button class="iraGit">GO</button>
+      </div>
+
+
+    </div>
+
+  </section>
+
+  <div class="copyright">
+      © 2023 Team EB JED. Todos los derechos reservados.
+  </div>
+
+</footer>
+
+
+
+
+
+<!--LLamada a los script del doc valida (menu responsive)-->
+
+<script>
+  Funcion1();
+</script>
+
+
+
+
+<!--script que comprueba la conexión a la base de datos-->
+
+<script>
+
+  let fetchRealizado = false;
+
+  const openButton = document.getElementById("accesar");
+
+  openButton.addEventListener("click", () => {
+
+    fetch('conex2.php', {
+      method: 'POST'
+    })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('No se pudo establecer la conexión con el servidor PHP');
+    }
+    return response.json();
+  })
+  .then(data => {
+    if (data.estado === "serverActivo") {
+      prevenirSobreNosotros()
+      const overlay = document.getElementById("overlay");
+      overlay.style.display = "flex";
+
+        console.log("El servidor está activo.");
+    } else if (data.estado === "serverInactivo") {
+
+        window.location.href = "error_acceso.html";
+        console.log("El servidor está inactivo. Realizar acción de error.");
+
+    } else {
+        // Respuesta desconocida
+        console.log("Respuesta desconocida: " + JSON.stringify(data));
+    }
+    fetchRealizado = true;
+  })
+}
+  
+  );
+
+  const closeButton = document.getElementById("closeButton");
+
+  closeButton.addEventListener("click", () => {
+    overlay.style.display = "none";
+    prevenirSobreNosotros();
+});
+
+</script>
+
+<!--Si no está disponible, manda a la página de error 500-->
+<!--Si está disponible abre el form de acceso-->
+
+
+
+<!--end-->
+
+
+
+<!--Script para mostrar y ocultar form superpuesto... -->
+
+<script>
+
+</script>
+
+<!--end-->
+
+
+
+</body>
+
 </html>
+

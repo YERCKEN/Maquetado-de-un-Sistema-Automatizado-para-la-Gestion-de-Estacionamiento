@@ -1,0 +1,47 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+.contenedor-error{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.img_error{
+    height: 300px;
+    width: 320px;
+}
+
+.contenedor-error h2{
+    color: #363cd8;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+}
+
+.regresar_index{
+    margin-top: 25px;
+}
+
+.regresar_index button{
+    background: rgb(118, 249, 118);
+    height: 30px;
+    width: 180px;
+    border-radius: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #83f2c7;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.msgErrorr{
+    font-family: 'Open Sans', sans-serif;
+}
+
+::selection{
+    background: #1db87d;
+    color: #eeeef9;
+}
+
+

@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300&family=Prompt:wght@100&display=swap');
+
+.overlayCards{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+.carousel-container{
+    position: absolute;
+    height: 420px;
+    width: 440px;
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #253138, #171755);
+    font-family: "Ropa Sans", sans-serif;
+}
+
+    
+.slider {
+    width: 90%;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .slides {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .slides::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .slides::-webkit-scrollbar-thumb {
+    background: rgb(138, 136, 136);
+    border-radius: 10px;
+  }
+  
+  .slides::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .slides > div {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    height: 345px;
+    margin-right: 50px;
+    border-radius: 10px;
+    background: transparent;
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slider > a {
+    display: inline-flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: white;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 0 0.5rem 0;
+    position: relative;
+  }
+  
+  .slider > a:active {
+    background:#253138;
+    color: #1cc9af;
+  }
+  
+  .slider > a {
+    color: black;
+  }
+  
+  .slider > a:focus {
+    background: #7f7e7e;
+  }
+  
+
+  .cerrarCards{
+    font-size: 25px;
+    color: #eee;
+    border: 1px solid #1c87c9;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px; /* Ajusta la distancia desde la parte superior según tus preferencias */
+    right: 15px; /* Ajusta la distancia desde la derecha según tus preferencias */
+    cursor: pointer;
+    padding: 0 5px;
+  }
+
+  .cerrarCards:hover{
+    color: rgb(255, 101, 101);
+  }
+
+
+  .encabezado-3{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #1c87c9;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
+
+  .encabezado-3 img{
+    width: 100px;
+    height: 100px;
+    border-radius: 20%;
+}
+
+.encabezado-3 .name3{
+    color: aliceblue;
+    margin-left: 10px;
+}
+
+#slide-3{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.datosInt3{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #1c87c9;
+    border-radius: 15px;
+}
+
+.datos3 .datosP{
+    font-family: 'Prompt', sans-serif;
+    font-family: 'Figtree', sans-serif;
+    color: rgb(91, 112, 252);
+    margin-left: 5px;
+    text-align: start;
+}
+
+.status3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin-right: 5px;
+}
+
+.estado3{
+    height: 15px;
+    width: 25px;
+    background: rgb(54, 240, 54);
+    border-radius: 50%;
+}
+
+.status3 .statusC{
+    font-family: 'Prompt', sans-serif;
+    font-family: 'Figtree', sans-serif;
+    color: rgb(40, 240, 173);
+    margin-right: 5px;
+}
+
+
+
+
+.encabezado-1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #1c87c9;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
+
+  .encabezado-1 img{
+    width: 100px;
+    height: 100px;
+    border-radius: 20%;
+}
+
+.encabezado-1 .name1{
+    color: aliceblue;
+    margin-left: 10px;
+}
+
+#slide-1{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.datosInt1{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #1c87c9;
+    border-radius: 15px;
+}
+
+.datos1 .datosP{
+    font-family: 'Prompt', sans-serif;
+    font-family: 'Figtree', sans-serif;
+    color: rgb(43, 255, 170);
+    margin-left: 5px;
+    text-align: start;
+}
+
+.status1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin-right: 15px;
+}
+
+.estado1{
+    height: 15px;
+    width: 25px;
+    background: rgb(54, 240, 54);
+    border-radius: 50%;
+}
+
+.status1 .statusC{
+    font-family: 'Prompt', sans-serif;
+    font-family: 'Figtree', sans-serif;
+    color: rgb(40, 240, 173);
+    margin-right: 5px;
+}
+
+
+
+
+.encabezado-2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #1c87c9;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+  }
+
+  .encabezado-2 .perfilF2{
+    width: 100px;
+    height: 100px;
+    border-radius: 20%;
+}
+
+.encabezado-2 .name2{
+    color: aliceblue;
+    margin-left: 10px;
+}
+
+#slide-2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.datosInt2{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #1c87c9;
+    border-radius: 15px;
+}
+
+.datos2 .datosP{
+    font-family: 'Prompt', sans-serif;
+    font-family: 'Figtree', sans-serif;
+    color: rgb(239, 125, 149);
+    margin-left: 5px;
+    text-align: start;
+}
+
+.status2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin-right: 5px;
+}
+
+.estado2{
+    height: 15px;
+    width: 25px;
+    background: rgb(54, 240, 54);
+    border-radius: 50%;
+}
+
+.status2 .statusC{
+    font-family: 'Prompt', sans-serif;
+    font-family: 'Figtree', sans-serif;
+    color: rgb(40, 240, 173);
+    margin-right: 5px;
+}
+
+
+.flag{
+    height: 20px;
+    width: 20px;
+}
+
