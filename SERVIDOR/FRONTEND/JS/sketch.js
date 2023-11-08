@@ -19,7 +19,7 @@ let canvasY = 0; // Posición Y actual del canvas
 
 // % DE ALTURA DEL CANVAS
 let porcentajeDeAltura = 0.80;
-let porcentajeDeAnchura= 0.95;
+let porcentajeDeAnchura= 0.90;
 
 //DATOS DE ESTACIONAMIENTO
 let parkingData;
@@ -39,7 +39,7 @@ function setup() {
 
 
   // Crear el canvas con las dimensiones del contenedor
-  let canvas = createCanvas(windowWidth * porcentajeDeAnchura, windowWidth * porcentajeDeAltura);
+  let canvas = createCanvas(windowWidth * porcentajeDeAnchura, windowHeight * porcentajeDeAltura);
 
   fetchParkingData();
   setInterval(fetchParkingData, 1000);  // Llama a fetchParkingData cada 1000ms (es decir, cada segundo)
@@ -140,7 +140,7 @@ function agregarMargenes() {
 
 function windowResized() {
   // Cambiar el tamaño del canvas cuando se redimensiona la ventana
-  resizeCanvas(windowWidth, windowHeight * porcentajeDeAltura);
+  resizeCanvas(windowWidth * porcentajeDeAnchura, windowHeight * porcentajeDeAltura);
 
   // Volver a agregar los márgenes
   //agregarMargenes();

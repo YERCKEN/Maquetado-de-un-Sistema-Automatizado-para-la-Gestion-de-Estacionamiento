@@ -16,7 +16,7 @@ window.addEventListener('load', () => {
 
         datos.append("nombreUsuario", usuario.value);
         datos.append("accesoClave", password.value);
-        fetch('validame.php', {
+        fetch('https://phppasarvariable.000webhostapp.com/BACKEND/validame.php', {
             method: 'POST',
             body: datos
         }).then(Response => Response.json())

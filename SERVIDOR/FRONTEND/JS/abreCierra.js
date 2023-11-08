@@ -32,7 +32,7 @@ window.addEventListener('load', () => {
         let formData = new FormData();
         formData.append("closeOpen", valor);
     
-        fetch('openClose.php', {
+        fetch('https://phppasarvariable.000webhostapp.com/BACKEND/openClose.php', {
             method: 'POST',
             body: formData
         })

@@ -5,7 +5,7 @@
 
       regresa.addEventListener("click", () => {
       //event.preventDefault();  
-      window.location.href = "index.html";
+      window.location.href = "https://phppasarvariable.000webhostapp.com/FRONTEND/index.html";
   });
        
 }
@@ -19,7 +19,7 @@
       const confirmLogout = confirm("¿Estás seguro de que quieres cerrar sesión?");
   
       if (confirmLogout) {
-          window.location.href = "index.html";
+          window.location.href = "https://phppasarvariable.000webhostapp.com/FRONTEND/index.html";
       }
   //}
   //);
