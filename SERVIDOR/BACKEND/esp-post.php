@@ -21,14 +21,14 @@ if (isset($_POST['park1'], $_POST['park2'], $_POST['park3'], $_POST['park4'], $_
     $stmt->bind_param("sssssssssss", $parking1, $parking2, $parking3, $parking4, $parking5, $parking6, $parking7, $parking8, $parking9, $parking10, $parking11);
 
     if ($stmt->execute()) {
-        echo "\n Registro en base de datos exitoso! Valor insertado: " . $parking1;
+        echo "Valores registrado";
+    
     } else {
-        echo "\n Error al registrar en BD: " . $stmt->error;
+        echo "Error al registrar en BD: " . $stmt->error;
     }
 }
 
 ?>
-
 
 
 

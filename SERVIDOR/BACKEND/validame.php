@@ -1,5 +1,6 @@
 <?php
-
+    header('Content-Type: application/json');
+    header('Access-Control-Allow-Origin: *'); // Esto permite el acceso CORS, modifica según tus necesidades
     //importar la configuración de conexión...
     include('conex.php');
         

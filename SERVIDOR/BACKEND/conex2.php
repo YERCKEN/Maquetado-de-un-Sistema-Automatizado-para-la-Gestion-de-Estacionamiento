@@ -2,7 +2,15 @@
 
     error_reporting(0);
     //Establece la conexión con la base de datos
-    $conn = mysqli_connect('localhost', 'root', '', 'usuarios');
+    header('Content-Type: application/json');
+    header('Access-Control-Allow-Origin: *'); // Esto permite el acceso CORS, modifica según tus necesidades
+    
+    $servername = 'localhost';
+    $username = 'id21336352_admin';
+    $password = '62692435Jeison@';
+    $dbname = 'id21336352_phpbd';
+    
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
     if (!$conn) {
         $respuestaServer = array(

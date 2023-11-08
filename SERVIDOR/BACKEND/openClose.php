@@ -1,6 +1,6 @@
 <?php
     include("conex.php");
-
+    header('Access-Control-Allow-Origin: *'); // Esto permite el acceso CORS, modifica según tus necesidades
     
 
     if(isset($_POST["closeOpen"]) && !empty($_POST["closeOpen"])){
