@@ -59,11 +59,17 @@ function draw() {
   // Escala
   scale(S);
 
+  
+
   // Imagen
   image(imgFondo, 0, 0);
   if (parkingData) {
     dibujarEstacionamientoC();
   }
+
+  // RECTAGULOS FIJOS
+  fill("#FF4D4D");
+  rect(909, 320, 43, 91);
 
   // FIN DE TRANSFORMACIONES ===============================================================
   pop();
@@ -95,7 +101,7 @@ function fetchParkingData() {
 function dibujarEstacionamientoC() {
   let positions = [
     {x: 683, y: 222}, {x: 728, y: 222}, {x: 774, y: 222}, {x: 819, y: 222}, {x: 864, y: 222}, {x: 909, y: 222},
-    {x: 683, y: 320}, {x: 728, y: 320}, {x: 774, y: 320}, {x: 819, y: 320}, {x: 864, y: 320}, {x: 909, y: 320}
+    {x: 683, y: 320}, {x: 728, y: 320}, {x: 774, y: 320}, {x: 819, y: 320}, {x: 864, y: 320}
   ];
   
   for (let i = 0; i < positions.length; i++) {
