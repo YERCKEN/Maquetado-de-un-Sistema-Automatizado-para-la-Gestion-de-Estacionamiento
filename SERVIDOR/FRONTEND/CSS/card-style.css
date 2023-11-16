@@ -24,7 +24,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to right, #253138, #171755);
+    background-color: rgb(25, 34, 48);
     font-family: "Ropa Sans", sans-serif;
 }
 

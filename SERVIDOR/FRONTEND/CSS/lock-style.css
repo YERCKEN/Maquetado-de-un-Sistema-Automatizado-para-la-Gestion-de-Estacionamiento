@@ -34,7 +34,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #231555;
+    background-color: rgb(25, 34, 48);
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -107,7 +107,7 @@
     align-items: center;
     width: 100%;
     font-family:Arial, Helvetica, sans-serif;
-    color: rgb(97, 97, 235);
+    color: #FFFFFF;
     margin-bottom: 10px;
 }
 

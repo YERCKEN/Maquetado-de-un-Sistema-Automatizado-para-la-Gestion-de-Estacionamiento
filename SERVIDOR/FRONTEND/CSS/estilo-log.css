@@ -15,7 +15,7 @@
 
 
 .form-container {
-    background-color: #231843;
+    background-color: rgb(25, 34, 48);
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -143,6 +143,6 @@
 }
 
 .titulo1 b{
-    color: blue;
+    color: rgb(113, 113, 224)
 }
 
