@@ -24,112 +24,72 @@ let porcentajeDeAnchura= 0.90;
 //DATOS DE ESTACIONAMIENTO
 let parkingData;
 
+// Variables para el pinch-to-zoom
+let initialPinchDistance = 0;
 
 //PRELOAD __________________________________________________________________________-
-
 function preload() {
-  //imgFondo = loadImage('https://cdn.glitch.global/20e097f8-2be8-4fa4-8f12-20d3d33c120d/FONDO.jpg?v=1697933427787');
   imgFondo = loadImage('https://cdn.glitch.global/20e097f8-2be8-4fa4-8f12-20d3d33c120d/FONDO_GRIS_SIN_CESPED.jpg?v=1698018267809');
 }
 
 //SETUP __________________________________________________________________________-
-
 function setup() {
-  // Obtener el contenedor del canvas y sus dimensiones
-
-
-  // Crear el canvas con las dimensiones del contenedor
   let canvas = createCanvas(windowWidth * porcentajeDeAnchura, windowHeight * porcentajeDeAltura);
 
   fetchParkingData();
-  setInterval(fetchParkingData, 1000);  // Llama a fetchParkingData cada 1000ms (es decir, cada segundo)
+  setInterval(fetchParkingData, 1000);
 
-  canvas.parent('canvas-container'); // Agrega el canvas al contenedor HTML
+  canvas.parent('canvas-container');
 }
-
 
 function draw() {
   background("#D0D7DA");
-  
-  // APLICAR TRANSFORMACIONES ===============================================
-  push();
 
-  // Traslación
+  push();
   translate(Tx, Ty);
-  // Escala
   scale(S);
 
-  
-
-  // Imagen
   image(imgFondo, 0, 0);
   if (parkingData) {
     dibujarEstacionamientoC();
   }
-
-  // RECTAGULOS FIJOS
-  fill("#FF4D4D");
-  rect(909, 320, 43, 91);
-
-  // FIN DE TRANSFORMACIONES ===============================================================
   pop();
-
-  // Información de posición del mouse
-  /*
-  textSize(24);
-  fill("red");
-  strokeWeight(1);
-  text("X: " + mouseX, mouseX - 50, mouseY);
-  fill("blue");
-  text("Y: " + mouseY, mouseX - 50, mouseY + 20);
-  */
-  //agregarMargenes();
 }
 
 function fetchParkingData() {
   fetch('https://phppasarvariable.000webhostapp.com/BACKEND/database_access.php')
     .then(response => response.json())
     .then(data => {
-        parkingData = data;
-        //dibujarEstacionamientoC();
+      parkingData = data;
     })
     .catch(error => {
-        console.error('Error:', error);
+      console.error('Error:', error);
     });
 }
 
 function dibujarEstacionamientoC() {
   let positions = [
     {x: 683, y: 222}, {x: 728, y: 222}, {x: 774, y: 222}, {x: 819, y: 222}, {x: 864, y: 222}, {x: 909, y: 222},
-    {x: 683, y: 320}, {x: 728, y: 320}, {x: 774, y: 320}, {x: 819, y: 320}, {x: 864, y: 320}
+    {x: 683, y: 320}, {x: 728, y: 320}, {x: 774, y: 320}, {x: 819, y: 320}, {x: 864, y: 320}, {x: 909, y: 320}
   ];
-  
+
   for (let i = 0; i < positions.length; i++) {
     let parkKey = 'park' + (i + 1);
     let parkValue = parkingData[parkKey];
-    console.log(`Valor para ${parkKey}: ${parkValue}`); // Imprime el valor
+    console.log(`Valor para ${parkKey}: ${parkValue}`);
     dibujarRectangulo(positions[i].x, positions[i].y, 43, 91, parkValue);
-
   }
 }
-// FUCNIÓN PAR ADIBUJAR RECTÁNGULOO
+
 function dibujarRectangulo(x, y, ancho, alto, value) {
   if (value === '0') {
-    //fill("#866EFF");
-    //fill("#C4FFEB");
     fill("#FFFFFF");
-    //OCUPADO
   } else if (value === '1') {
-    //MORADO
-    //fill("#866EFF");
-    //ROJO de ocupado
     fill("#FF4D4D");
   }
   rect(x, y, ancho, alto);
 }
 
-
-// FUNCUÓN PARA MÁRGENES Y TAMAÑO DE PANTALLA ===============================================
 function agregarMargenes() {
   let porcentajeGrosor = 0.02;
   let grosorMargen = windowWidth * porcentajeGrosor;
@@ -138,36 +98,53 @@ function agregarMargenes() {
   noStroke();
   fill('white');
 
-  // Izquierda
   rect(0, 0, grosorMargen, alturaDeMargen);
-  // Derecha
   rect(windowWidth - grosorMargen, 0, grosorMargen, alturaDeMargen);
 }
 
 function windowResized() {
-  // Cambiar el tamaño del canvas cuando se redimensiona la ventana
   resizeCanvas(windowWidth * porcentajeDeAnchura, windowHeight * porcentajeDeAltura);
-
-  // Volver a agregar los márgenes
-  //agregarMargenes();
 }
 
 //FUNCIONES DE TRANSFORMACIOES ===============================================================================
-
 //traslación
 function touchMoved() {
   if (estaEnElCanvas()) {
-    Tx += (mouseX - pmouseX) * dts;
-    Ty += (mouseY - pmouseY) * dts;
+    if (touches.length === 1) {
+      // Paning con un dedo
+      Tx += (touches[0].x - pmouseX) * dts;
+      Ty += (touches[0].y - pmouseY) * dts;
+    } else if (touches.length === 2) {
+      // Pinch-to-zoom con dos dedos
+      let pinchDistance = dist(touches[0].x, touches[0].y, touches[1].x, touches[1].y);
+
+      if (initialPinchDistance === 0) {
+        initialPinchDistance = pinchDistance;
+      } else {
+        let delta = pinchDistance - initialPinchDistance;
+
+        if (delta > 0) {
+          // Zoom in
+          zoomIn((touches[0].x + touches[1].x) / 2, (touches[0].y + touches[1].y) / 2);
+        } else {
+          // Zoom out
+          zoomOut((touches[0].x + touches[1].x) / 2, (touches[0].y + touches[1].y) / 2);
+        }
+
+        initialPinchDistance = pinchDistance;
+      }
+    }
   }
 }
 
-//verificar si está en el canvas
-function estaEnElCanvas() {
-  return (0.0 <= pmouseX && pmouseX <= width) && (0.0 <= pmouseY && pmouseY <= height);
+function touchEnded() {
+  // Restablecer la distancia inicial al finalizar el toque
+  initialPinchDistance = 0;
 }
 
-// evento de rueda de mouse
+function estaEnElCanvas() {
+  return (0.0 <= touches[0].x && touches[0].x <= width) && (0.0 <= touches[0].y && touches[0].y <= height);
+}
 
 function mouseWheel(event) {
   if (estaEnElCanvas()) {
@@ -175,41 +152,30 @@ function mouseWheel(event) {
     let canvasY = mouseY;
 
     if (event.delta > 0) {
-      // Hacer zoom in centrado en la posición del mouse
       zoomOut(canvasX, canvasY);
     } else {
-      // Hacer zoom out centrado en la posición del mouse
       zoomIn(canvasX, canvasY);
     }
   }
-  return false; // Evitar que la página haga scroll
+  return false;
 }
 
-//ZOOM +
 function zoomIn(mouseX, mouseY) {
-   // Factor de escala para hacer zoom in
-  let scaleFactor = 1.1;
+  let scaleFactor = 1.03;
   let newS = S * scaleFactor;
-  
-  // Ajusta la posición del canvas para que el mouse quede en el mismo lugar después del zoom
+
   Tx = mouseX - (mouseX - Tx) * scaleFactor;
   Ty = mouseY - (mouseY - Ty) * scaleFactor;
-  
-  S = newS;
-  // Aquí debes redibujar el contenido del canvas con la nueva escala y posición
-}
 
-//ZOOM -
+  S = newS;
+}
 
 function zoomOut(mouseX, mouseY) {
-  // Factor de escala para hacer zoom out
-  let scaleFactor = 0.9; 
+  let scaleFactor = 0.97;
   let newS = S * scaleFactor;
-  
-  // Ajusta la posición del canvas para que el mouse quede en el mismo lugar después del zoom
+
   Tx = mouseX - (mouseX - Tx) * scaleFactor;
   Ty = mouseY - (mouseY - Ty) * scaleFactor;
-  
+
   S = newS;
-  // Aquí debes redibujar el contenido del canvas con la nueva escala y posición
 }
