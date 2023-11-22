@@ -48,7 +48,9 @@ function draw() {
   push();
   translate(Tx, Ty);
   scale(S);
+  
 
+  stroke("none")
   image(imgFondo, 0, 0);
   if (parkingData) {
     dibujarEstacionamientoC();
