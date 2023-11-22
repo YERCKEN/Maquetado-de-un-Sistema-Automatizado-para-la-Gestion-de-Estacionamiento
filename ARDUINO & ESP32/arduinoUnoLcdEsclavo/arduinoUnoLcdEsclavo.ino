@@ -22,7 +22,7 @@ uint8_t receivedValue = 0;  // Variable para almacenar el valor recibido
 TFT TFTscreen(cs, dc, rst);
 
 
-
+//movimiento retardado
 
 int anguloActual = 50;  // Angulo inicial
 int anguloObjetivo = 50;  // Angulo al que quieres llegar
