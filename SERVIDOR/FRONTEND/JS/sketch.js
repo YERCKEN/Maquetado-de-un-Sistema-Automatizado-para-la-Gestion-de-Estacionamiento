@@ -76,10 +76,17 @@ function dibujarEstacionamientoC() {
   for (let i = 0; i < positions.length; i++) {
     let parkKey = 'park' + (i + 1);
     let parkValue = parkingData[parkKey];
+
+    // Modifica el valor solo para el espacio de estacionamiento en la posición {x: 909, y: 320}
+    if (positions[i].x === 909 && positions[i].y === 320) {
+      parkValue = '1'; // '1' indica que el espacio está ocupado
+    }
+
     console.log(`Valor para ${parkKey}: ${parkValue}`);
     dibujarRectangulo(positions[i].x, positions[i].y, 43, 91, parkValue);
   }
 }
+
 
 function dibujarRectangulo(x, y, ancho, alto, value) {
   if (value === '0') {
