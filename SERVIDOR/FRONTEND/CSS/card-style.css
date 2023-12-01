@@ -122,7 +122,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #1c87c9;
+    /*border: 1px solid #1c87c9;*/
+    border: 1px solid #d0dcec;
+
     padding: 10px;
     border-radius: 15px;
     margin-bottom: 20px;
@@ -139,6 +141,11 @@
     margin-left: 10px;
 }
 
+.encabezado-4 .name4{
+  color: aliceblue;
+  margin-left: 10px;
+}
+
 #slide-3{
     width: 100%;
     display: flex;
@@ -151,14 +158,16 @@
     width: 90%;
     display: flex;
     justify-content: space-between;
-    border: 1px solid #1c87c9;
+    /*border: 1px solid #1c87c9;*/
+    border: 1px solid #d0dcec;
     border-radius: 15px;
 }
 
 .datos3 .datosP{
     font-family: 'Prompt', sans-serif;
     font-family: 'Figtree', sans-serif;
-    color: rgb(91, 112, 252);
+    /*color: rgb(91, 112, 252);*/
+    color: #d0dcec;
     margin-left: 5px;
     text-align: start;
 }
@@ -192,7 +201,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #1c87c9;
+    /*border: 1px solid #1c87c9;*/
+    border: 1px solid #508ec1;
     padding: 10px;
     border-radius: 15px;
     margin-bottom: 20px;
@@ -221,14 +231,16 @@
     width: 95%;
     display: flex;
     justify-content: space-between;
-    border: 1px solid #1c87c9;
+    /*border: 1px solid #1c87c9;*/
+    border: 1px solid #508ec1;
     border-radius: 15px;
 }
 
 .datos1 .datosP{
     font-family: 'Prompt', sans-serif;
     font-family: 'Figtree', sans-serif;
-    color: rgb(43, 255, 170);
+    /*color: rgb(43, 255, 170);*/
+    color: #508ec1;
     margin-left: 5px;
     text-align: start;
 }
@@ -262,7 +274,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid #1c87c9;
+    /*border: 1px solid #1c87c9;*/
+    border: 2px solid #ef7d95;
     padding: 10px;
     border-radius: 15px;
     margin-bottom: 20px;
@@ -291,14 +304,16 @@
     width: 95%;
     display: flex;
     justify-content: space-between;
-    border: 1px solid #1c87c9;
+    /*border: 1px solid #1c87c9;*/
+
+    border: 2px solid #ef7d95;
     border-radius: 15px;
 }
 
 .datos2 .datosP{
     font-family: 'Prompt', sans-serif;
     font-family: 'Figtree', sans-serif;
-    color: rgb(239, 125, 149);
+    color: #ef7d95;
     margin-left: 5px;
     text-align: start;
 }
@@ -329,5 +344,85 @@
 .flag{
     height: 20px;
     width: 20px;
+}
+
+
+
+
+
+
+
+
+.encabezado-4{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #bdceaa;
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.encabezado-4 .perfilF2{
+  width: 100px;
+  height: 100px;
+  border-radius: 20%;
+}
+
+.encabezado-4 .name2{
+  color: aliceblue;
+  margin-left: 10px;
+}
+
+#slide-4{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.datosInt4{
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #bdceaa;
+  border-radius: 15px;
+}
+
+.datos4 .datosP{
+  font-family: 'Prompt', sans-serif;
+  font-family: 'Figtree', sans-serif;
+  color: #bdceaa;
+  margin-left: 5px;
+  text-align: start;
+}
+
+.status4{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  margin-right: 5px;
+}
+
+.estado4{
+  height: 15px;
+  width: 25px;
+  background: rgb(54, 240, 54);
+  border-radius: 50%;
+}
+
+.status4 .statusC{
+  font-family: 'Prompt', sans-serif;
+  font-family: 'Figtree', sans-serif;
+  color: rgb(40, 240, 173);
+  margin-right: 5px;
+}
+
+
+.flag{
+  height: 20px;
+  width: 20px;
 }
 
